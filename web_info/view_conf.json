@@ -1,0 +1,5 @@
+{
+    "logintemplate":{"header":"loginheader", "footer":"loginfooter"},
+    "menutemplate":{"header":"menuheader", "footer":"menufooter"},
+    "notemplate":{"header":"noheader", "footer":"nofooter"}
+}

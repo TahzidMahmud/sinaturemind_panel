@@ -1,0 +1,21 @@
+{
+    "paynow": {"routerpath":"web_info/container/pay","routerfile":"payment"},
+    "sslpay": {"routerpath":"web_info/container/paysslcom","routerfile":"sslpay"},
+    "login": {"routerpath":"web_info/container/adminlogin","routerfile":"login"},
+    "nagbakpages": {"routerpath":"web_info/container/webfeatures","routerfile":"features"},
+    "register": {"routerpath":"web_info/container/adminregister","routerfile":"userregister"},
+    "forgotpass": {"routerpath":"web_info/container/forgotpass","routerfile":"forgotpass"},    
+    "salesdashboard": {"routerpath":"web_info/container/asalesdashboard","routerfile":"salesdashboard"},
+    "itemdatabase": {"routerpath":"web_info/container/itemmaster","routerfile":"itemmaster"},  
+    "orders": {"routerpath":"web_info/container/orders","routerfile":"orders"},
+    "products": {"routerpath":"web_info/container/products","routerfile":"products"},
+    "del_orders": {"routerpath":"web_info/container/orders","routerfile":"orders"},
+    "additems":{"routerpath":"web_info/container/itemmasteradd","routerfile":"itemmasteradd"}, 
+    "errorpage": {"routerpath":"web_info/container/errorpage","routerfile":"apperror"},
+    "profile": {"routerpath":"web_info/container/profile","routerfile":"profile"},
+    "sms": {"routerpath":"web_info/container/sms","routerfile":"sms"},
+    "buysms": {"routerpath":"web_info/container/buysms","routerfile":"buysms"},
+    "api": {"routerpath":"web_info/container/api","routerfile":"api"}
+
+
+}
