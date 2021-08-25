@@ -15,7 +15,7 @@ class Buysms extends Controller{
     function init(){
         $this->view->script = $this->script();
         $this->view->render("menutemplate","appsettings/buysms_view",false);
-        Logdebug::appendlog(print_r(URL, true));
+        // Logdebug::appendlog(print_r(URL, true));
         
     }
    

@@ -15,7 +15,8 @@
     "profile": {"routerpath":"web_info/container/profile","routerfile":"profile"},
     "sms": {"routerpath":"web_info/container/sms","routerfile":"sms"},
     "buysms": {"routerpath":"web_info/container/buysms","routerfile":"buysms"},
-    "api": {"routerpath":"web_info/container/api","routerfile":"api"}
+    "api": {"routerpath":"web_info/container/api","routerfile":"api"},
+    "group": {"routerpath":"web_info/container/group","routerfile":"group"}
 
 
 }

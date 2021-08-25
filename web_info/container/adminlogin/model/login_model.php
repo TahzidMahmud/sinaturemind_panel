@@ -5,11 +5,11 @@ class Login_model extends Model{
     }
 
     function getlogindt($user, $pass){
-		$conditions[]= "xstore = ?";
+		$conditions[]= "mobile = ?";
 		$conditions[]= "xpassword = ?";
 		$params[]= $user;
 		$params[]= $pass;
-		return $this->db->dbselectbyparam('storemst','*',$conditions,$params);
+		return $this->db->dbselectbyparam('suser','*',$conditions,$params);
 	}
 
     

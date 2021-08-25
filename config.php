@@ -90,7 +90,7 @@
                     //     define ('DB_PASS','Dbsl@2021');
 
                         if (!defined('DB_NAME')) 
-                        define ('DB_NAME','nagbakdb_old');
+                        define ('DB_NAME','annexnewtest');
                     
                     if (!defined('DB_USER')) 
                         define ('DB_USER','root');

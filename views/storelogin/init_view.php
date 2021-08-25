@@ -21,7 +21,7 @@
                                     <form class="form-horizontal auth-form" id="authform">
         
                                         <div class="form-group mb-2">
-                                            <label for="username">Username</label>
+                                            <label for="username">Mobile No</label>
                                             <div class="input-group">                                                                                         
                                                 <input type="text" class="form-control" name="username" id="username" placeholder="Enter username">
                                             </div>                                    

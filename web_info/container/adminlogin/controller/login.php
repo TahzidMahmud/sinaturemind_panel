@@ -13,21 +13,17 @@ class Login extends Controller{
         //Logdebug::appendlog($username);
         $hashpass = Hash::create('sha256',$rawpass,HASH_KEY);
         //Logdebug::appendlog($username.$hashpass);
-        $loginrec = $this->model->getlogindt($username, $hashpass);
-        //Logdebug::appendlog(print_r($loginrec,true));
+        $loginrec = $this->model->getlogindt($username, $hashpass)[0];
+        // Logdebug::appendlog(print_r($loginrec,true));
         //  Logdebug::appendlog(print_r($loginrec[0],true));
         if(count($loginrec)>0){
             Session::init();
             Session::set('adminlogin', true);
-            Session::set('ssl', $loginrec[0]['xsl']);
-            Session::set('suser', $loginrec[0]['xstore']);
-            Session::set('image', $loginrec[0]['ximage']);
-            Session::set('sfullname', $loginrec[0]['xfullname']);
-            Session::set('saddress', $loginrec[0]['xaddress']);
-            Session::set('splan', $loginrec[0]['xaccplan']);
-            Session::set('rin', $loginrec[0]['rin_no']);
-            Session::set('odc', $loginrec[0]['odc_no']);
-
+            Session::set('sl', $loginrec['sl']);
+            Session::set('uname', $loginrec['uname']);
+            Session::set('mobile', $loginrec['mobile']);
+            Session::set('xemail', $loginrec['xemail']);
+            Session::set('role', $loginrec['role']);
             echo json_encode(array("result"=>"success", "message"=>""));
             
 

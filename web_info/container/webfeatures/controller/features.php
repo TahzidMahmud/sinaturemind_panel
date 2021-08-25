@@ -12,18 +12,12 @@ class Features extends Controller{
 
         //Main user form initialize here
         $this->formfield = array(      	
-            "ownername"=>array("ctrlfield"=>"xfullname"),						
-            "mobile"=>array("ctrlfield"=>"xstore"),
-            "orgname"=>array("ctrlfield"=>"xorgname"),		
-			"email"=>array("ctrlfield"=>"xemail"),
-			"address"=>array("ctrlfield"=>"xaddress"),
-            "district"=>array("ctrlfield"=>"xdistrict"),		
-            "thana"=>array("ctrlfield"=>"xthana"),
-            "contact"=>array("ctrlfield"=>"xcontact"),		
-			"password"=>array("ctrlfield"=>"xpassword"),
-			"bizcat"=>array("ctrlfield"=>"xbizcat"),
-            "confcode"=>array("ctrlfield"=>"xtemptxn"),
-            "accplan"=>array("ctrlfield"=>"xaccplan"),
+            "mobile"=>array("ctrlfield"=>"mobile"),
+            "name"=>array("ctrlfield"=>"name"),		
+			"xemail"=>array("ctrlfield"=>"xemail"),
+			"address"=>array("ctrlfield"=>"address"),
+			"xpassword"=>array("ctrlfield"=>"xpassword"),
+			
 		);
 	}
     public function init(){
@@ -41,7 +35,7 @@ class Features extends Controller{
     }
     public function registeracc(){
         
-        $pass = Hash::create('sha256',$_POST['password'],HASH_KEY);
+        $pass = Hash::create('sha256',$_POST['xpassword'],HASH_KEY);
         $token = Session::get('token');
         
         if($_GET['token']!=$_GET['token']){
@@ -55,95 +49,40 @@ class Features extends Controller{
 					->val('minlength', 11)
 					->val('maxlength', 20)
 
-                    ->post("ownername")
-					->val('minlength', 5)
-					->val('maxlength', 100)
-
-
-                    ->post("confcode")
-                    
+					->post("xpassword")
+					->val('minlength', 1)
+					->val('maxlength', 20)
 					
-                    ->post("bizcat")
-                    ->val('minlength', 5)
-                    ->val('maxlength', 100)
-
-                    ->post("contact")                    
-                   
-
-                    ->post("orgname")
+                    ->post("name")
 					->val('minlength', 5)
 					->val('maxlength', 100)
 
-                    ->post("email")
-					->val('minlength', 5)
+                    ->post("xemail")
+					->val('minlength', 1)
 					->val('maxlength', 100)
 
                     ->post("address")
 					->val('minlength', 5)
-					->val('maxlength', 250)
+					->val('maxlength', 250);
 
-                    ->post("district")
-					->val('minlength', 5)
-					->val('maxlength', 50)
-
-                    ->post("thana")
-					->val('minlength', 5)
-					->val('maxlength', 100)
-					
-
-                    
-
-                    ->post("accplan");
+                  
 					
         $inputs	->submit(); 		
 
         $inpdata = $inputs->fetch();
-        //Logdebug::appendlog(print_r($inpdata, true));
         $data = Apptools::form_field_to_data($inpdata, $this->formfield);
-        //
-        $code = $this->model->getcode($data['xtemptxn']); 
-        if(count($code)==0){
-            echo json_encode(array("result"=>"error", "message"=>"Invalid confirmation code!"));
-            exit;
-        }
+        // Logdebug::appendlog(print_r($data, true));
+		$data["xpassword"]=$pass;
+    
+        $result = $this->model->create('suser',$data);
         
-        $usedcode = $this->model->getusedcode($data['xtemptxn']);
-        if(count($usedcode)>0){
-            echo json_encode(array("result"=>"error", "message"=>"Confirmation code already used!"));
-            exit;
-        }
+		if ($result>0){
+			echo json_encode(array("result"=>"success","message"=>"Account Created 
+			Successfully..!!"));
+		}else{
+			echo json_encode(array("result"=>"error","message"=>"Couldn't Create.!!"));
+		}
 
-        $codedata['xcode']=$data['xtemptxn'];
-        $codedata['xstore']=$data['xstore'];
-
-        $result = $this->model->create('expshopused',$codedata);
-
-        $data['xpaymethod']='ABLPAY';
-        $data['xpassword']=$pass;
-        $data['xamount']=1000;
-		$data['xdelarea']=$data['thana'];
-         //Logdebug::appendlog(print_r($data, true));
-
-
-            if($result>0){
-                $result = $this->model->create('storemst',$data);
-        
-                if($result>0){
-                    echo json_encode(array("result"=>"failed", "message"=>"Register account successfully!"));
-                    exit;
-                }else{
-                    echo json_encode(array("result"=>"failed", "message"=>"Failed! Could not register!"));
-                    exit;
-                }
-                
-            }else{
-                echo json_encode(array("result"=>"failed", "message"=>"Failed! Could not register!"));
-                exit;
-            }
-
-        
-
-        
         }catch(Exception $e){
             $res = unserialize($e->getMessage()); 
             
@@ -324,19 +263,11 @@ class Features extends Controller{
             $('#register').on('click',function(e){
                 var token = $('#apikey').val()    
                 e.preventDefault();
-                if(!$('#frmregister').valid()){
-                    return false;
-                 }
-
-                 if(!$('#isagree').is(':checked')){  
-                    return false;
-                 }
-                 
-                 if($('#withcode').is(':checked')){        
-                     
+					console.log('hit')
+                       
                     $.ajax({
                             
-                        url:\"https://nagbak.com/?page=nagbakpages&action=registeracc&token=\"+token, 
+                        url:\"".URL."?page=nagbakpages&action=registeracc&token=\"+token, 
                         type : \"POST\",                                  				
                         data : $('#frmregister').serialize(), 
                         
@@ -346,7 +277,7 @@ class Features extends Controller{
                             
                         },
                         success : function(result) {
-                            console.log(result);
+                            // console.log(result);
                             
                             $('#register').prop('disabled', false)
                             $('#regspinner').removeClass('spinner-border spinner-border-sm')
@@ -356,6 +287,7 @@ class Features extends Controller{
                                     icon: 'success',
                                     title: resultobj['message']
                                 })
+								location.replace(`".URL."`)
                             }else{
                                 Toast.fire({
                                     icon: 'error',
@@ -369,30 +301,7 @@ class Features extends Controller{
                             $('#regspinner').removeClass('spinner-border spinner-border-sm')
                         }
                     })
-                }else{
-                    $.ajax({
-                            
-                        url:\"".PAYGATE_URL."&action=init\", 
-                        type : \"POST\",                                  				
-                        data : $('#frmregister').serialize(), 
-                        
-                        beforeSend:function(){	
-                            
-                            
-                        },
-                        success : function(result) {
-                            
-
-                            const resultobj = JSON.parse(result);
-                            if(resultobj['result']=='success')
-                                location.href=\"".PAYGATE_URL."&action=paygateway&token=\"+resultobj['message'];
-                            
-                        },error: function(xhr, resp, text) {
-                            
-                            
-                        }
-                    })
-                }
+                
                         
             })
 

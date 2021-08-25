@@ -4,44 +4,20 @@
         {"type":"hassub","icon":"grid",
             "submenu":
                 [
-                    {"menu":"Sales Dashboard","page":"salesdashboard","method":"init"}
+                    {"menu":"Dashboard","page":"salesdashboard","method":"init"}
                 ]
             },
    
-    "Add Items": 
-        {"type":"hassub","icon":"settings",
+    "Groups": 
+        {"type":"hassub","icon":"grid",
             "submenu":
                 [
-                    {"menu":"From Nagbak","page":"additems","method":"init"},
-                    {"menu":"New Product","page":"itemdatabase","method":"init"}
+                    {"menu":"Add group","page":"group","method":"init"},
+                    {"menu":"Add group","page":"itemdatabase","method":"init"}
                   
                 ]
-            },
-    "Products": 
-        {"type":"hassub","icon":"grid",
-            "submenu":
-                [
-                    {"menu":"Shop Products","page":"products","method":"init"}
+            }
                   
-                ]
-            },
-    "Sales": 
-        {"type":"hassub","icon":"grid",
-            "submenu":
-                [
-                    {"menu":"Orders","page":"orders","method":"init"}
-                   
-                 
-                ]
-            },
-    "Communication": 
-        {"type":"hassub","icon":"grid",
-            "submenu":
-                [
-                    {"menu":"Send SMS","page":"sms","method":"init"},
-                    {"menu":"Buy SMS","page":"buysms","method":"init"}     
-                ]
-            }                 
 }
 
 

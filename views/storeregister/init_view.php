@@ -18,23 +18,102 @@
                         </div>
                         <div class="card-body p-0">
                                 
-                                <div class="col px-3 pt-3"> 
-                                <form>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                <div class="col px-3 pt-3">
+                                <form class="form-horizontal auth-form" id="frmregister" >
+                                <div class="row">
+                                
+                                        <div class="col">
+                                       
+                                            
+                                                <div class="form-group mb-2">
+                                                    <label for="username">Name </label>
+                                                    <div class="input-group">                                                                            
+                                                        <input type="text" class="form-control form-control-sm" name="name" id="name" required
+                                                        data-parsley-minlength="5" placeholder="Min 5 chars.">
+                                                    </div>                                    
+                                                </div><!--end form-group--> 
+                                                
+                                                <div class="form-group mb-2">
+                                                    <label for="username">Mobile </label>
+                                                    <div class="input-group">                                                                                         
+                                                        <input type="text" class="form-control form-control-sm" name="mobile" id="mobile" required
+                                                        data-parsley-minlength="11" placeholder="Min 11 chars.">
+                                                    </div>                                    
+                                                </div>
+                                            
+                                                <div class="form-group mb-2">
+                                                    <label for="userpassword">Password</label>                                            
+                                                    <div class="input-group">                                  
+                                                        <input type="password" class="form-control form-control-sm" name="xpassword" id="xpassword" placeholder="Enter password">
+                                                    </div>                               
+                                                </div><!--end form-group--> 
+            
+                                                <div class="form-group row my-3">
+                                                <div class="col-sm-12">
+                                                    
+                                                </div><!--end col-->                                             
+                                            </div><!--end form-group--> 
+                                           
+                                            <hr>
+                                       
+                                        
+                                        </div>
+
+                                         <div class="col">
+                                       
+                                            
+                                                
+                                                <div class="form-group mb-2">
+                                                    <label for="useremail">Email</label>
+                                                    <div class="input-group">                                                                                         
+                                                    <input type="email" id="xemail" name="xemail" class="form-control form-control-sm" required
+                                                            parsley-type="email" placeholder="E-mail"/>
+                                                    </div>                                    
+                                                </div><!--end form-group-->
+                                            
+                                            
+                                        
+                                            <div class="form-group mb-2">
+                                                <label for="username">Address</label>
+                                                    
+                                                <input type="text" class="form-control form-control-sm" name="address" id="address" placeholder="Enter Confirm Password">
+                                                    
+                                                </div>
+                                                <div class="form-group mb-2 ml-2">
+                                                    <label for="conf_password">Confirm Password</label>                                            
+                                                    <div class="input-group">                                   
+                                                        <input type="password" class="form-control form-control-sm" name="confirmpassword" id="confirmpassword" placeholder="Enter Confirm Password">
+                                                    </div>
+                                                </div><!--end form-group-->
+                                            
+                                            <div class="form-group row my-3">
+                                                <div class="col-sm-12">
+                                                    <div class="custom-control custom-switch switch-success">
+                                                        <input type="checkbox" class="custom-control-input" checked id="isagree" name="isagree">
+                                                        <label class="custom-control-label text-muted" for="isagree">You agree to the Nagbak <a  href="<?php echo URL;?>?page=nagbakpages&action=storetc" class="text-primary">Terms of Service</a></label>
+                                                        
+                                                    </div>
+                                                </div><!--end col-->                                             
+                                            </div><!--end form-group--> 
+                                            
+                                            <div class="form-group mb-0 row">
+                                                <div class="col-12">
+                                                    <input type="hidden" value="<?php echo $this->token;?>"  name="apikey" id="apikey">
+                                                    <input type="hidden" value="<?php echo URL;?>"  name="callbackurl" id="callbackurl">
+                                                    
+                                                </div><!--end col--> 
+                                            </div> <!--end form-group--> 
+
+                                       
+                                        
                                     </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                    </div>  
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                               
+                                </div>
                                 </form><!--end form-->
+                                <button class="btn btn-primary btn-block waves-effect waves-light" id="register" >
+                                                        <span id="" class="mr-2" role="status" aria-hidden="true"></span> 
+                                                        Register <i class="fas fa-sign-in-alt ml-1"></i>
+                                                    </button>
                                 </div>
                         </div><!--end card-body-->
                         <div class="card-body bg-light-alt text-center">
